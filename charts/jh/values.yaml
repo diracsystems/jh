@@ -15,7 +15,7 @@ knativeDeploy: false
 
 service:
   name: jh
-  type: ClusterIP
+  type: LoadBalancer
   appPort: 8080
   extAppPort: 80
   adminPort: 8080
