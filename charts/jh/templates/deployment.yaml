@@ -19,7 +19,7 @@ spec:
 {{ toYaml .Values.podAnnotations | indent 8 }}
 {{- end }}
     spec:
-       initContainers:
+      initContainers:
         - name: init-ds
           image: busybox:latest
           command:
@@ -41,10 +41,17 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
+{{- range $pkey, $pval := .Values.env }}
+        - name: {{ $pkey }}
+          value: {{ quote $pval }}
+{{- end }}
         - name: SPRING_PROFILES_ACTIVE
           value: prod
         - name: JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET
-          value: TnpnME4yWXpNVE5tTnpjNFlUWTFaams1WkRRME5qRTJZV0kwTUdGaU9EYzFZbVE1TURnM09EUXpZMlU0WkRKak56TTBObVl6T0RrMFpERXhNakpsWkRBNE1qWTNOVFE0TVdRNE5qRmxZVFF4TXpGbE56UTJOalExTnpGbU9EbGlPRGxtTnc9PQ==
+          valueFrom:
+            secretKeyRef:
+              name: jwt-secret
+              key: secret
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://jh-mysql.jx-staging.svc.cluster.local:3306/jh?useUnicode=true&characterEncoding=utf8&useSSL=false
         - name: JAVA_OPTS
