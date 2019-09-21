@@ -15,7 +15,7 @@ knativeDeploy: false
 
 service:
   name: jh
-  type: ClusterIP
+  type: LoadBalancer
   appPort: 8080
   extAppPort: 80
   adminPort: 8080
@@ -41,3 +41,11 @@ readinessProbe:
   periodSeconds: 10
   successThreshold: 1
   timeoutSeconds: 1
+
+mysql:
+  enabled: true
+  mysqlDatabase: jh
+  mysqlAllowEmptyPassword: true
+  initializationFiles:
+    grant.sql: |-
+      grant all privileges on *.* to root@'%' identified by '' with grant option;
