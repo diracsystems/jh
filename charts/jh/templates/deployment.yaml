@@ -44,10 +44,7 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: prod
         - name: JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: jwt-secret
-              key: secret
+          value: TnpnME4yWXpNVE5tTnpjNFlUWTFaams1WkRRME5qRTJZV0kwTUdGaU9EYzFZbVE1TURnM09EUXpZMlU0WkRKak56TTBObVl6T0RrMFpERXhNakpsWkRBNE1qWTNOVFE0TVdRNE5qRmxZVFF4TXpGbE56UTJOalExTnpGbU9EbGlPRGxtTnc9PQ==
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://jh-mysql.jx-staging.svc.cluster.local:3306/jh?useUnicode=true&characterEncoding=utf8&useSSL=false
         - name: JAVA_OPTS
