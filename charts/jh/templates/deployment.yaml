@@ -53,7 +53,7 @@ spec:
               name: jwt-secret
               key: secret
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:mysql://jh-mysql.jx-staging.svc.cluster.local:3306/jh?useUnicode=true&characterEncoding=utf8&useSSL=false
+          value: jdbc:mysql://jh-mysql:3306/jh?useUnicode=true&characterEncoding=utf8&useSSL=false
         - name: JAVA_OPTS
           value: " -Xmx256m -Xms256m"
         ports:
