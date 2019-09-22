@@ -4,8 +4,7 @@ import com.dirac.sales.config.ApplicationProperties;
 import com.dirac.sales.config.DefaultProfileUtil;
 
 import io.github.jhipster.config.JHipsterConstants;
-import java.util.Arrays;
-import java.util.stream.StreamSupport;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,12 +14,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.env.Environment;
-import org.springframework.core.env.AbstractEnvironment;
-import org.springframework.core.env.EnumerablePropertySource;
-import org.springframework.core.env.MutablePropertySources;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.Collection;
 
 @SpringBootApplication
@@ -33,17 +30,6 @@ public class CustomerApp implements InitializingBean {
 
     public CustomerApp(Environment env) {
         this.env = env;
-        log.info("====== Environment and configuration ======");
-        log.info("Active profiles: {}", Arrays.toString(env.getActiveProfiles()));
-        final MutablePropertySources sources = ((AbstractEnvironment) env).getPropertySources();
-        StreamSupport.stream(sources.spliterator(), false)
-                .filter(ps -> ps instanceof EnumerablePropertySource)
-                .map(ps -> ((EnumerablePropertySource) ps).getPropertyNames())
-                .flatMap(Arrays::stream)
-                .distinct()
-                .filter(prop -> !(prop.contains("credentials") || prop.contains("password")))
-                .forEach(prop -> log.info("{}: {}", prop, env.getProperty(prop)));
-         log.info("===========================================");
     }
 
     /**
